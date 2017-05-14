@@ -123,7 +123,7 @@ function handleEventResponse(intent, session, callback) {
     } else {
         var date = events[event].date
         var location = events[event].location
-        var speechOutput = capitalizeFirst(event) + " " + date + " and " + location + ". Do you want to hear about other events?"
+        var speechOutput = " The first upcoming event is " + capitalizeFirst(event) + " " + date + " and " + location + ". Do you want to hear about other events?"
         var repromtText = "Do you want to hear about other events?"
         var header = capitalizeFirst(event)
     }
