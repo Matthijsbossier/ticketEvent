@@ -1,0 +1,7 @@
+EventIntent {Event}
+EventIntent Tell me about {Event}
+EventIntent Talk about {Event}
+EventIntent Tell me some facts about {Event}
+AMAZON.HelpIntent Tell me the upcoming events again
+AMAZON.HelpIntent Tell me the names of the upcoming events
+AMAZON.HelpIntent What are the events again
