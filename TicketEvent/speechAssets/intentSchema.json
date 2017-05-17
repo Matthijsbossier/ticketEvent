@@ -1,25 +1,28 @@
 {
-  "intents": [{
-    "intent": "EventIntent",
-    "slots": [
-      {
-        "name": "Event",
-        "type": "LIST_OF_EVENTS"
-      }
-    ]
-  }, {
-    "intent": "AMAZON.YesIntent"
-  }, {
-    "intent": "AMAZON.NoIntent"
-  }, {
-    "intent": "AMAZON.HelpIntent"
-  }, {
-    "intent": "AMAZON.StopIntent"
-  }, {
-    "intent": "AMAZON.CancelIntent"
-
+  "intents": [
+    {
+      "slots": [
+        {
+          "name": "Event",
+          "type": "LIST_OF_EVENTS"
+        }
+      ],
+      "intent": "EventIntent"
+    },
+    {
+      "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "AMAZON.NoIntent"
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
     }
-
   ]
-
 }

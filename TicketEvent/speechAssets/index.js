@@ -1,9 +1,9 @@
 var events = {
     "FlowFestival" : {
-         "date": "12th and 13th of August, 2017",
+        "date": "12th and 13th of August, 2017",
         "location": "Chasseveld, Breda"
     }
-}
+};
 
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
@@ -16,9 +16,9 @@ exports.handler = function (event, context) {
          * prevent someone else from configuring a skill that sends requests to this function.
          */
 
-        // if (event.session.application.applicationId !== "") {
-        //     context.fail("Invalid Application ID");
-        //  }
+        if (event.session.application.applicationId !== "amzn1.ask.skill.df405f74-9d5c-496b-9b6f-eb1e0f219046") {
+            context.fail("Invalid Application ID");
+        }
 
         if (event.session.new) {
             onSessionStarted({requestId: event.request.requestId}, event.session);
@@ -56,7 +56,7 @@ function onSessionStarted(sessionStartedRequest, session) {
  * Called when the user invokes the skill without specifying what they want.
  */
 function onLaunch(launchRequest, session, callback) {
-    getWelcomeResponse(callback)
+    getWelcomeResponse(callback);
 }
 
 /**
@@ -64,24 +64,24 @@ function onLaunch(launchRequest, session, callback) {
  */
 function onIntent(intentRequest, session, callback) {
 
-    var intent = intentRequest.intent
+    var intent = intentRequest.intent;
     var intentName = intentRequest.intent.name;
 
     // dispatch custom intents to handlers here
     if (intentName == "EventIntent") {
-        handleEventResponse(intent, session, callback)
+        handleEventResponse(intent, session, callback);
     } else if (intentName == "AMAZON.YesIntent") {
-        handleYesResponse(intent, session, callback)
+        handleYesResponse(intent, session, callback);
     } else if (intentName == "AMAZON.NoIntent") {
-        handleNoResponse(intent, session, callback)
+        handleNoResponse(intent, session, callback);
     } else if (intentName == "AMAZON.HelpIntent") {
-        handleGetHelpRequest(intent, session, callback)
+        handleGetHelpRequest(intent, session, callback);
     } else if (intentName == "AMAZON.StopIntent") {
-        handleFinishSessionRequest(intent, session, callback)
+        handleFinishSessionRequest(intent, session, callback);
     } else if (intentName == "AMAZON.CancelIntent") {
-        handleFinishSessionRequest(intent, session, callback)
+        handleFinishSessionRequest(intent, session, callback);
     } else {
-        throw "Invalid intent"
+        throw "Invalid intent";
     }
 }
 
@@ -96,70 +96,74 @@ function onSessionEnded(sessionEndedRequest, session) {
 // ------- Skill specific logic -------
 
 function getWelcomeResponse(callback) {
-    var speechOutput = "Welcome to Ticket Event! Would you like to know what the upcoming events are?"
+    var speechOutput = "Welcome to Ticket Event! Would you like to know what the upcoming events are?";
 
-    var reprompt = "Would you like to have some information about the upcoming events?"
+    var reprompt = "Would you like to have some information about the upcoming events?";
 
-    var header = "Ticket Event"
+    var header = "Ticket Event";
 
-    var shouldEndSession = false
+    var shouldEndSession = false;
 
     var sessionAttributes = {
         "speechOutput" : speechOutput,
         "repromptText" : reprompt
-    }
+    };
 
-    callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession))
+    callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession));
 
 }
 
 function handleEventResponse(intent, session, callback) {
-    var events = intent.slots.Event.value.toLowerCase()
+    var events = intent.slots.Event.value.toLowerCase();
 
     if (!events[event]) {
-        var speechOutput = "This event is not available yet"
-        var repromptText = "Try asking about another event"
-        var header = "No Event Yet"
+        var speechOutput = "This event is not available yet";
+        var repromptText = "Try asking about another event";
+        var header = "No Event Yet";
+
+        callback(session.attributes, buildSpeechletResponse(header, speechOutput, repromptText));
+
     } else {
-        var date = events[event].date
-        var location = events[event].location
-        var speechOutput = " The first upcoming event is " + capitalizeFirst(event) + " " + date + " and " + location + ". Do you want to hear about other events?"
-        var repromtText = "Do you want to hear about other events?"
-        var header = capitalizeFirst(event)
+        var date = events[event].date;
+        var location = events[event].location;
+        var speechOutput1 = " The first upcoming event is " + capitalizeFirst(event) + " " + date + " and " + location + ". Do you want to hear about other events?";
+        var repromptText1 = "Do you want to hear about other events?";
+        var header1 = capitalizeFirst(event);
+
+
+        var shouldEndSession = false;
+
+        callback(session.attributes, buildSpeechletResponse(header1, speechOutput1, repromptText1, shouldEndSession));
     }
-
-    var shouldEndSession = false
-
-    callback(session.attributes, buildSpeechletResponse(header, speechOutput, repromptText, shouldEndSession))
 }
 
 function handleYesResponse(intent, session, callback) {
-    var events = intent.slots.Event.value.toLowerCase()
+    var events = intent.slots.Event.value.toLowerCase();
 
-    var speechOutput = "Great! Do you want to buy tickets for" + events[event] +  "?"
-    var repromptText = speechOutput
-    var shouldEndSession = false
+    var speechOutput = "Great! The first upcoming event is" + events[event] +  "Do you want to buy tickets for this event?";
+    var repromptText = speechOutput;
+    var shouldEndSession = false;
 
-    callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, repromptText, shouldEndSession))
+    callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, repromptText, false));
 }
 
 function handleNoResponse(intent, session, callback){
-    handleFinishSessionRequest(intent, session, callback)
+    handleFinishSessionRequest(intent, session, callback);
 }
 
 function handleGetHelpRequest(intent, session, callback){
     if (!session.attributes){
         session.attributes = {};
     }
-    var speechOutput = "I can tell you information about upcoming events"
-    var repromptText = speechOutput
-    var shouldEndSession = false
+    var speechOutput = "I can tell you information about upcoming events";
+    var repromptText = speechOutput;
+    var shouldEndSession = false;
 
-    callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, repromptText, shouldEndSession))
+    callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, repromptText, shouldEndSession));
 }
 
 function handleFinishSessionRequest(intent, session, callback){
-    callback(session.attributes, buildSpeechletResponseWithoutCard("Good bye! Thank you for using Ticket Event!", "", true))
+    callback(session.attributes, buildSpeechletResponseWithoutCard("Good bye! Thank you for using Ticket Event!", "", true));
 
 }
 
@@ -213,5 +217,5 @@ function buildResponse(sessionAttributes, speechletResponse) {
 }
 
 function capitalizeFirst(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1)
+    return s.charAt(0).toUpperCase() + s.slice(1);
 }
