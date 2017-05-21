@@ -1,13 +1,13 @@
 {
   "intents": [
     {
+      "intent": "FestivalIntent",
       "slots": [
         {
-          "name": "Event",
-          "type": "LIST_OF_EVENTS"
+          "name": "Festival",
+          "type": "LIST_OF_FESTIVALS"
         }
-      ],
-      "intent": "EventIntent"
+      ]
     },
     {
       "intent": "AMAZON.YesIntent"

@@ -1,9 +1,21 @@
-var events = {
-    "FlowFestival" : {
+/*
+ var festivals = '{ "festivals2017" : [' +
+ '{ "name":"Flow Festival 2017" , "date":"12th and 13th of August, 2017", "location":"Chasséveld, Breda, The Netherlands" }';
+ ']}';
+
+ //festival = JSON.parse(festivals);
+ */
+
+
+var festivals = {
+    flowfestival2017 : {
+        "name" : "Flow Festival 2017",
         "date": "12th and 13th of August, 2017",
         "location": "Chasseveld, Breda"
     }
 };
+
+
 
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
 // etc.) The JSON body of the request is provided in the event parameter.
@@ -68,7 +80,7 @@ function onIntent(intentRequest, session, callback) {
     var intentName = intentRequest.intent.name;
 
     // dispatch custom intents to handlers here
-    if (intentName == "EventIntent") {
+    if (intentName == "FestivalIntent") {
         handleEventResponse(intent, session, callback);
     } else if (intentName == "AMAZON.YesIntent") {
         handleYesResponse(intent, session, callback);
@@ -114,9 +126,9 @@ function getWelcomeResponse(callback) {
 }
 
 function handleEventResponse(intent, session, callback) {
-    var events = intent.slots.Event.value.toLowerCase();
+    var festival = intent.slots.Festival.value;
 
-    if (!events[event]) {
+    if (!festivals[festival]) {
         var speechOutput = "This event is not available yet";
         var repromptText = "Try asking about another event";
         var header = "No Event Yet";
@@ -124,11 +136,13 @@ function handleEventResponse(intent, session, callback) {
         callback(session.attributes, buildSpeechletResponse(header, speechOutput, repromptText));
 
     } else {
-        var date = events[event].date;
-        var location = events[event].location;
-        var speechOutput1 = " The first upcoming event is " + capitalizeFirst(event) + " " + date + " and " + location + ". Do you want to hear about other events?";
+
+        var name = festivals[festival].name;
+        var date = festivals[festival].date;
+        var location = festivals[festival].location;
+        var speechOutput1 = " The first upcoming event is " + name + " on " + date + " and the location is: " + location + ". Do you want to hear about other events?";
         var repromptText1 = "Do you want to hear about other events?";
-        var header1 = capitalizeFirst(event);
+        var header1 = capitalizeFirst(festival);
 
 
         var shouldEndSession = false;
@@ -138,13 +152,24 @@ function handleEventResponse(intent, session, callback) {
 }
 
 function handleYesResponse(intent, session, callback) {
-    var events = intent.slots.Event.value.toLowerCase();
 
-    var speechOutput = "Great! The first upcoming event is" + events[event] +  "Do you want to buy tickets for this event?";
-    var repromptText = speechOutput;
+    var festivalName = festivals.flowfestival2017.name;
+    var speechOutput = "Great! The first upcoming event is " + festivalName + ". Would you like to buy tickets for " + festivalName + "?";
+    var repromptText = "The first upcoming event is ...";
+    var header = "First upcoming event";
     var shouldEndSession = false;
 
-    callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, repromptText, false));
+    var sessionAttributes = {
+        "speechOutput" : speechOutput,
+        "repromptText" : repromptText
+    };
+
+    callback(session.attributes, buildSpeechletResponse(header, speechOutput, repromptText, shouldEndSession));
+    //callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, repromptText, shouldEndSession));
+
+
+    //callback(session.attributes, buildSpeechletResponse(header, speechOutput, repromptText, shouldEndSession));
+
 }
 
 function handleNoResponse(intent, session, callback){

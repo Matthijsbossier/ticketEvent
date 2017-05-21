@@ -1,8 +1,7 @@
-EventIntent {Event}
-EventIntent tell me about {Event}
-EventIntent talk about {Event}
-EventIntent tell me some facts about {Event}
-AMAZON.YesIntent yes
+FestivalIntent {Festival}
+FestivalIntent tell me about {Festival}
+FestivalIntent talk about {Festival}
+FestivalIntent tell me some facts about {Festival}
 AMAZON.HelpIntent tell me the upcoming events again
 AMAZON.HelpIntent tell me the names of the upcoming events
 AMAZON.HelpIntent that are the events again
