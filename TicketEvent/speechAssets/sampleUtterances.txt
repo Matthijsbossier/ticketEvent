@@ -1,7 +1,29 @@
-FestivalIntent {Festival}
 FestivalIntent tell me about {Festival}
 FestivalIntent talk about {Festival}
 FestivalIntent tell me some facts about {Festival}
+ZeroTicketIntent zero
+ZeroTicketIntent zero tickets
+ZeroTicketIntent null
+OneTicketIntent one
+OneTicketIntent one ticket
+TwoTicketIntent two
+TwoTicketIntent two tickets
+ThreeTicketIntent three
+ThreeTicketIntent three tickets
+FourTicketIntent four
+FourTicketIntent four tickets
+FiveTicketIntent five
+FiveTicketIntent five tickets
+SixTicketIntent six
+SixTicketIntent six tickets
+SevenTicketIntent seven
+SevenTicketIntent seven tickets
+EightTicketIntent eight
+EightTicketIntent eight tickets
+NineTicketIntent nine
+NineTicketIntent nine tickets
 AMAZON.HelpIntent tell me the upcoming events again
 AMAZON.HelpIntent tell me the names of the upcoming events
 AMAZON.HelpIntent that are the events again
+AMAZON.HelpIntent what can you tell me
+AMAZON.HelpIntent help

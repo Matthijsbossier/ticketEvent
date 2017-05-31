@@ -1,16 +1,46 @@
 {
   "intents": [
     {
-      "intent": "FestivalIntent",
       "slots": [
         {
           "name": "Festival",
           "type": "LIST_OF_FESTIVALS"
         }
-      ]
+      ],
+      "intent": "FestivalIntent"
     },
     {
       "intent": "AMAZON.YesIntent"
+    },
+    {
+      "intent": "ZeroTicketIntent"
+    },
+    {
+      "intent": "OneTicketIntent"
+    },
+    {
+      "intent": "TwoTicketIntent"
+    },
+    {
+      "intent": "ThreeTicketIntent"
+    },
+    {
+      "intent": "FourTicketIntent"
+    },
+    {
+      "intent": "FiveTicketIntent"
+    },
+    {
+      "intent": "SixTicketIntent"
+    },
+    {
+      "intent": "SevenTicketIntent"
+    },
+    {
+      "intent": "EightTicketIntent"
+    },
+    {
+      "intent": "NineTicketIntent"
     },
     {
       "intent": "AMAZON.NoIntent"
