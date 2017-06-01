@@ -8,6 +8,11 @@
 if (!counter) {
     var counter = 0;
 }
+
+if (!amountoftickets){
+    var amountoftickets = 0;
+}
+
 var festivals = {
     flowfestival2017 : {
         "name" : "Flow Festival 2017",
@@ -193,8 +198,8 @@ function handleYesResponse(intent, session, callback) {
     }
     else if(counter === 1){
         festivalName = festivals.flowfestival2017.name;
-        speechOutput = "Okay! How many tickets would you like to buy for " + festivalName + " ?";
-        repromptText = "Would you like to buy tickets for " + festivalName + " ?";
+        speechOutput = "Okay! How many tickets would you like to buy for " + festivalName + " ? The maximum amount of tickets that you could order is nine tickets.";
+        repromptText = "The maximum amount of tickets to order is nine tickets. How many tickets would you like to buy for " + festivalName + " ?";
         header = "First upcoming event";
         shouldEndSession = false;
 
@@ -235,78 +240,283 @@ function handleFinishSessionRequest(intent, session, callback){
 
 function handleZeroTicketResponse(intent, session, callback){
 
+        speechOutput = "Okay! It seems like you don't want to buy a ticket. Would you like to hear about the upcoming events?";
+        repromptText = "Would you like to hear about the upcoming events?";
+        header = "Zero tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
 }
 
 function handleOneTicketResponse(intent, session, callback){
 
-    var speechOutput;
-    var repromptText;
-    var header;
-    var shouldEndSession;
-    var sessionAttributes;
+    if(amountoftickets === 0){
+        speechOutput = "Okay! So you would like to buy one ticket. Could you please say the number of tickets again for confirmation?";
+        repromptText = "Could you please say the number of tickets again for confirmation?";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 1;
+    }
 
-    speechOutput = "Okay!;
-    repromptText = "";
-    header = "";
-    shouldEndSession = false;
-    sessionAttributes = {
-        "speechOutput" : speechOutput,
-        "repromptText" : repromptText
-    };
+    else if(amountoftickets === 1){
+        speechOutput = "Alright! That'll be one ticket for you. The price for one ticket is 20 euro. Please give us your phonenumber for handling the payment-service.";
+        repromptText = "The price for one ticket is 20 euro. Please give us your phonenumber for handling the payment-service.";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 0;
+    }
+
 
     callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, repromptText, shouldEndSession));
 }
 
 function handleTwoTicketResponse(intent, session, callback){
 
+    if(amountoftickets === 0){
+        speechOutput = "Okay! So you would like to buy two tickets. Could you please say the number of tickets again for confirmation?";
+        repromptText = "Could you please say the number of tickets again for confirmation?";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 1;
+    }
+
+    else if(amountoftickets === 1){
+        speechOutput = "Alright! That'll be two tickets for you. The price for two tickets is 40 euro. Please give us your phonenumber for handling the payment-service.";
+        repromptText = "The price for two tickets is 40 euro. Please give us your phonenumber for handling the payment-service.";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 0;
+    }
+
 }
 
 function handleThreeTicketResponse(intent, session, callback){
+
+    if(amountoftickets === 0){
+        speechOutput = "Okay! So you would like to buy three tickets. Could you please say the number of tickets again for confirmation?";
+        repromptText = "Could you please say the number of tickets again for confirmation?";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 1;
+    }
+
+    else if(amountoftickets === 1){
+        speechOutput = "Alright! That'll be three tickets for you. The price for three tickets is 60 euro. Please give us your phonenumber for handling the payment-service.";
+        repromptText = "The price for three tickets is 60 euro. Please give us your phonenumber for handling the payment-service.";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 0;
+    }
 
 }
 
 function handleFourTicketResponse(intent, session, callback){
 
+    if(amountoftickets === 0){
+        speechOutput = "Okay! So you would like to buy four tickets. Could you please say the number of tickets again for confirmation?";
+        repromptText = "Could you please say the number of tickets again for confirmation?";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 1;
+    }
+
+    else if(amountoftickets === 1){
+        speechOutput = "Alright! That'll be four tickets for you. The price for four tickets is 80 euro. Please give us your phonenumber for handling the payment-service.";
+        repromptText = "The price for four tickets is 80 euro. Please give us your phonenumber for handling the payment-service.";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 0;
+    }
+
+
 }
 
 function handleFiveTicketResponse(intent, session, callback){
+
+    if(amountoftickets === 0){
+        speechOutput = "Okay! So you would like to buy five tickets. Could you please say the number of tickets again for confirmation?";
+        repromptText = "Could you please say the number of tickets again for confirmation?";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 1;
+    }
+
+    else if(amountoftickets === 1){
+        speechOutput = "Alright! That'll be five tickets for you. The price for five tickets is 100 euro. Please give us your phonenumber for handling the payment-service.";
+        repromptText = "The price for five tickets is 100 euro. Please give us your phonenumber for handling the payment-service.";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 0;
+    }
+
 
 }
 
 function handleSixTicketResponse(intent, session, callback){
 
+    if(amountoftickets === 0){
+        speechOutput = "Okay! So you would like to buy six tickets. Could you please say the number of tickets again for confirmation?";
+        repromptText = "Could you please say the number of tickets again for confirmation?";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 1;
+    }
+
+    else if(amountoftickets === 1){
+        speechOutput = "Alright! That'll be six tickets for you. The price for six tickets is 120 euro. Please give us your phonenumber for handling the payment-service.";
+        repromptText = "The price for six tickets is 120 euro. Please give us your phonenumber for handling the payment-service.";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 0;
+    }
+
+
 }
 
 function handleSevenTicketResponse(intent, session, callback){
+
+    if(amountoftickets === 0){
+        speechOutput = "Okay! So you would like to buy seven tickets. Could you please say the number of tickets again for confirmation?";
+        repromptText = "Could you please say the number of tickets again for confirmation?";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 1;
+    }
+
+    else if(amountoftickets === 1){
+        speechOutput = "Alright! That'll be seven tickets for you. The price for seven tickets is 140 euro. Please give us your phonenumber for handling the payment-service.";
+        repromptText = "The price for seven tickets is 140 euro. Please give us your phonenumber for handling the payment-service.";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 0;
+    }
+
 
 }
 
 function handleEightTicketResponse(intent, session, callback){
 
+    if(amountoftickets === 0){
+        speechOutput = "Okay! So you would like to buy eight tickets. Could you please say the number of tickets again for confirmation?";
+        repromptText = "Could you please say the number of tickets again for confirmation?";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 1;
+    }
+
+    else if(amountoftickets === 1){
+        speechOutput = "Alright! That'll be eight tickets for you. The price for eight tickets is 160 euro. Please give us your phonenumber for handling the payment-service.";
+        repromptText = "The price for eight tickets is 160 euro. Please give us your phonenumber for handling the payment-service.";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 0;
+    }
+
+
 }
 
 function handleNineTicketResponse(intent, session, callback){
 
-}
+    if(amountoftickets === 0){
+        speechOutput = "Okay! So you would like to buy nine tickets. Could you please say the number of tickets again for confirmation?";
+        repromptText = "Could you please say the number of tickets again for confirmation?";
+        header = "Amount of tickets";
+        shouldEndSession = false;
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 1;
+    }
 
-function handleOneTicketResponse(intent, session, callback){
-    var speechOutput;
-    var repromptText;
-    var header;
-    var shouldEndSession;
-    var sessionAttributes;
+    else if(amountoftickets === 1){
+        speechOutput = "Alright! That'll be nine tickets for you. The price for nine tickets is 180 euro. Please give us your phonenumber for handling the payment-service.";
+        repromptText = "The price for nine tickets is 180 euro. Please give us your phonenumber for handling the payment-service.";
+        header = "Amount of tickets";
+        shouldEndSession = false;
 
-    speechOutput = "Okay!;
-    repromptText = "The first upcoming event is " + festivalName + ". Would you like to buy tickets for this event?";
-    header = "First upcoming event";
-    shouldEndSession = false;
-    sessionAttributes = {
-        "speechOutput" : speechOutput,
-        "repromptText" : repromptText
-    };
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        amountoftickets = 0;
+    }
 
 
-    callback(session.attributes, buildSpeechletResponseWithoutCard(speechOutput, repromptText, shouldEndSession));
 }
 
 // ------- Helper functions to build responses for Alexa -------
