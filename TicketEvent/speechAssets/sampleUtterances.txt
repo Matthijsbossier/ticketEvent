@@ -1,27 +1,43 @@
 FestivalIntent tell me about {Festival}
 FestivalIntent talk about {Festival}
 FestivalIntent tell me some facts about {Festival}
+AMAZON.YesIntent yep
+AMAZON.YesIntent yeah
+AMAZON.NoIntent bye alexa
+AMAZON.NoIntent bye bye
+AMAZON.NoIntent bye
 ZeroTicketIntent zero
 ZeroTicketIntent zero tickets
 ZeroTicketIntent null
+ZeroTicketIntent null tickets
 OneTicketIntent one
 OneTicketIntent one ticket
+OneTicketIntent one ticket please
+OneTicketIntent one tickets
 TwoTicketIntent two
 TwoTicketIntent two tickets
+TwoTicketIntent two tickets please
 ThreeTicketIntent three
 ThreeTicketIntent three tickets
+ThreeTicketIntent three tickets please
 FourTicketIntent four
 FourTicketIntent four tickets
+FourTicketIntent four tickets please
 FiveTicketIntent five
 FiveTicketIntent five tickets
+FiveTicketIntent five tickets please
 SixTicketIntent six
 SixTicketIntent six tickets
+SixTicketIntent six tickets please
 SevenTicketIntent seven
 SevenTicketIntent seven tickets
+SevenTicketIntent seven tickets please
 EightTicketIntent eight
 EightTicketIntent eight tickets
+EightTicketIntent eight tickets please
 NineTicketIntent nine
 NineTicketIntent nine tickets
+NineTicketIntent nine tickets please
 AMAZON.HelpIntent tell me the upcoming events again
 AMAZON.HelpIntent tell me the names of the upcoming events
 AMAZON.HelpIntent that are the events again

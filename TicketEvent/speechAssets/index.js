@@ -244,7 +244,7 @@ function handleFinishSessionRequest(intent, session, callback){
 function handleZeroTicketResponse(intent, session, callback){
     if (counter===2){
         if (amountoftickets===0){
-            speechOutput = "Okay! It seems like you don't want to buy a ticket. Would you like to hear about the upcoming events?";
+            speechOutput = "Okay! It seems like you don't want to buy a ticket. Would you like to hear again about the upcoming events?";
             repromptText = "Would you like to hear about the upcoming events?";
             header = "Zero tickets";
             shouldEndSession = false;
@@ -261,7 +261,7 @@ function handleZeroTicketResponse(intent, session, callback){
         if(phonenumber.length != 10){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
-            header = "Phone numbert";
+            header = "Phone number";
             shouldEndSession = false;
 
             sessionAttributes = {
