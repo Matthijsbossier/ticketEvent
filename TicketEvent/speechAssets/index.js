@@ -258,7 +258,7 @@ function handleZeroTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone number";
@@ -271,7 +271,7 @@ function handleZeroTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "0";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             phonenumber.toString();
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
@@ -319,7 +319,7 @@ function handleOneTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone numbert";
@@ -332,7 +332,7 @@ function handleOneTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "1";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             phonenumber.toString();
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
@@ -380,7 +380,7 @@ function handleTwoTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone numbert";
@@ -393,7 +393,7 @@ function handleTwoTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "2";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
@@ -442,7 +442,7 @@ function handleThreeTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone numbert";
@@ -455,7 +455,7 @@ function handleThreeTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "3";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
@@ -504,7 +504,7 @@ function handleFourTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone numbert";
@@ -517,7 +517,7 @@ function handleFourTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "4";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
@@ -567,7 +567,7 @@ function handleFiveTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone numbert";
@@ -580,7 +580,7 @@ function handleFiveTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "5";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
@@ -630,7 +630,7 @@ function handleSixTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone numbert";
@@ -643,7 +643,7 @@ function handleSixTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "6";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
@@ -692,7 +692,7 @@ function handleSevenTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone numbert";
@@ -705,7 +705,7 @@ function handleSevenTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "7";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
@@ -754,7 +754,7 @@ function handleEightTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone numbert";
@@ -767,7 +767,7 @@ function handleEightTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "8";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
@@ -815,7 +815,7 @@ function handleNineTicketResponse(intent, session, callback){
     }
 
     else if(counter === 3){
-        if(phonenumber.length != 10){
+        if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
             header = "Phone numbert";
@@ -828,7 +828,7 @@ function handleNineTicketResponse(intent, session, callback){
             phonenumber = phonenumber + "9";
         }
 
-        else if(phonenumber.length === 10){
+        else if(phonenumber.length === 9){
             speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
