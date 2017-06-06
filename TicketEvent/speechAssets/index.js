@@ -273,7 +273,7 @@ function handleZeroTicketResponse(intent, session, callback){
 
         else if(phonenumber.length === 9){
             phonenumber.toString();
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -334,7 +334,7 @@ function handleOneTicketResponse(intent, session, callback){
 
         else if(phonenumber.length === 9){
             phonenumber.toString();
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -394,7 +394,7 @@ function handleTwoTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -456,7 +456,7 @@ function handleThreeTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -518,7 +518,7 @@ function handleFourTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is :" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -581,7 +581,7 @@ function handleFiveTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -644,7 +644,7 @@ function handleSixTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -706,7 +706,7 @@ function handleSevenTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -768,7 +768,7 @@ function handleEightTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -829,7 +829,7 @@ function handleNineTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
