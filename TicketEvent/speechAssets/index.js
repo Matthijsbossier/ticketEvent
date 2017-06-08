@@ -16,6 +16,10 @@ if (!phonenumber){
     var phonenumber = "";
 }
 
+if (!vipregular){
+    var vipregular = "";
+}
+
 var festivals = {
     flowfestival2017 : {
         "name" : "Flow Festival 2017",
@@ -95,6 +99,10 @@ function onIntent(intentRequest, session, callback) {
         handleYesResponse(intent, session, callback);
     } else if (intentName == "AMAZON.NoIntent") {
         handleNoResponse(intent, session, callback);
+    } else if (intentName == "RegularTicketIntent"){
+        handleRegularTicketResponse(intent, session, callback);
+    } else if (intentName == "VipTicketIntent"){
+        handleVipTicketResponse(intent, session, callback);
     } else if (intentName == "ZeroTicketIntent") {
         handleZeroTicketResponse(intent, session, callback);
     } else if (intentName == "OneTicketIntent") {
@@ -199,10 +207,11 @@ function handleYesResponse(intent, session, callback) {
         };
         counter = 1;
     }
+
     else if(counter === 1){
         festivalName = festivals.flowfestival2017.name;
-        speechOutput = "Okay! How many tickets would you like to buy for " + festivalName + " ?";
-        repromptText = "Would you like to buy tickets for " + festivalName + " ?";
+        speechOutput = "What kind of ticket would you like to buy for " + festivalName + ". Regular ticket or VIP ticket?";
+        repromptText = "Would you like to buy a regular ticket or a VIP ticket for " + festivalName + " ?";
         header = "First upcoming event";
         shouldEndSession = false;
 
@@ -211,6 +220,34 @@ function handleYesResponse(intent, session, callback) {
             "repromptText" : repromptText
         };
         counter = 2;
+    }
+
+    if(counter === 2 && vipregular === "r"){
+        festivalName = festivals.flowfestival2017.name;
+        speechOutput = "Okay! How many regular tickets would you like to buy for " + festivalName + " ?";
+        repromptText = "Would you like to buy tickets for " + festivalName + " ?";
+        header = "First upcoming event";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        counter = 3;
+    }
+
+    else if(counter === 2 && vipregular === "v"){
+        festivalName = festivals.flowfestival2017.name;
+        speechOutput = "Okay! How many VIP tickets would you like to buy for " + festivalName + " ?";
+        repromptText = "Would you like to buy tickets for " + festivalName + " ?";
+        header = "First upcoming event";
+        shouldEndSession = false;
+
+        sessionAttributes = {
+            "speechOutput" : speechOutput,
+            "repromptText" : repromptText
+        };
+        counter = 3;
     }
 
     callback(session.attributes, buildSpeechletResponse(header, speechOutput, repromptText, shouldEndSession));
@@ -241,8 +278,43 @@ function handleFinishSessionRequest(intent, session, callback){
 
 }
 
+function  handleRegularTicketResponse(intent, session, callback){
+
+    var speechOutput = "So you would like to buy one or more regular tickets? Is that correct?";
+    var reprompt = "Is it correct that you would like to buy one or more regular tickets?";
+    var header = "Regular ticket";
+    var shouldEndSession = false;
+    vipregular = "r"
+    var sessionAttributes = {
+        "speechOutput" : speechOutput,
+        "repromptText" : reprompt
+    };
+
+    callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession));
+
+
+}
+
+function  handleVipTicketResponse(intent, session, callback){
+
+    var speechOutput = "So you would like to buy one or more VIP tickets? Is that correct?";
+    var reprompt = "Is it correct that you would like to buy one or more VIP tickets?";
+    var header = "VIP ticket";
+    var shouldEndSession = false;
+    vipregular = "v"
+    var sessionAttributes = {
+        "speechOutput" : speechOutput,
+        "repromptText" : reprompt
+    };
+
+    callback(sessionAttributes, buildSpeechletResponse(header, speechOutput, reprompt, shouldEndSession));
+
+
+
+}
+
 function handleZeroTicketResponse(intent, session, callback){
-    if (counter===2){
+    if (counter===3){
         if (amountoftickets===0){
             speechOutput = "Okay! It seems like you don't want to buy a ticket. Would you like to hear again about the upcoming events?";
             repromptText = "Would you like to hear about the upcoming events?";
@@ -257,7 +329,7 @@ function handleZeroTicketResponse(intent, session, callback){
         counter = 0;
     }
 
-    else if(counter === 3){
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -273,7 +345,7 @@ function handleZeroTicketResponse(intent, session, callback){
 
         else if(phonenumber.length === 9){
             phonenumber.toString();
-            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -291,9 +363,9 @@ function handleZeroTicketResponse(intent, session, callback){
 }
 
 function handleOneTicketResponse(intent, session, callback){
-    if(counter === 2){
+    if(counter === 3 && vipregular === "r"){
         if(amountoftickets === 0){
-            speechOutput = "Okay! So you would like to buy one ticket. Could you please say the number of tickets again for confirmation?";
+            speechOutput = "Okay! So you would like to buy one regular ticket. Could you please say the number of tickets again for confirmation?";
             repromptText = "Could you please say the number of tickets again for confirmation?";
             header = "Amount of tickets";
             shouldEndSession = false;
@@ -305,8 +377,8 @@ function handleOneTicketResponse(intent, session, callback){
         }
 
         else if(amountoftickets === 1){
-            speechOutput = "Alright! That'll be one ticket for you. The price for one ticket is 20 euro. Please give us your phone number for handling the payment-service.";
-            repromptText = "The price for one ticket is 20 euro. Please give us your phone number for handling the payment-service.";
+            speechOutput = "Alright! That'll be one regular ticket for you. The price for one regular ticket is 16,18 euro. Please give us your phone number for handling the payment-service.";
+            repromptText = "The price for one regular ticket is 16,18 euro. Please give us your phone number for handling the payment-service.";
             header = "Amount of tickets";
             shouldEndSession = false;
             sessionAttributes = {
@@ -314,11 +386,38 @@ function handleOneTicketResponse(intent, session, callback){
                 "repromptText" : repromptText
             };
             amountoftickets = 2;
-            counter = 3;
+            counter = 4;
         }
     }
 
-    else if(counter === 3){
+    if(counter === 3 && vipregular === "v"){
+        if(amountoftickets === 0){
+            speechOutput = "Okay! So you would like to buy one VIP ticket. Could you please say the number of tickets again for confirmation?";
+            repromptText = "Could you please say the number of tickets again for confirmation?";
+            header = "Amount of tickets";
+            shouldEndSession = false;
+            sessionAttributes = {
+                "speechOutput" : speechOutput,
+                "repromptText" : repromptText
+            };
+            amountoftickets = 1;
+        }
+
+        else if(amountoftickets === 1){
+            speechOutput = "Alright! That'll be one VIP ticket for you. The price for one VIP ticket is 16,18 euro. Please give us your phone number for handling the payment-service.";
+            repromptText = "The price for one VIP ticket is 51,68 euro. Please give us your phone number for handling the payment-service.";
+            header = "Amount of tickets";
+            shouldEndSession = false;
+            sessionAttributes = {
+                "speechOutput" : speechOutput,
+                "repromptText" : repromptText
+            };
+            amountoftickets = 2;
+            counter = 4;
+        }
+    }
+
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -334,7 +433,7 @@ function handleOneTicketResponse(intent, session, callback){
 
         else if(phonenumber.length === 9){
             phonenumber.toString();
-            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -344,6 +443,7 @@ function handleOneTicketResponse(intent, session, callback){
                 "speechOutput" : speechOutput,
                 "repromptText" : repromptText
             };
+            counter = 0;
         }
 
     }
@@ -352,7 +452,7 @@ function handleOneTicketResponse(intent, session, callback){
 
 function handleTwoTicketResponse(intent, session, callback){
 
-    if(counter === 2){
+    if(counter === 3){
         if(amountoftickets === 0){
             speechOutput = "Okay! So you would like to buy two tickets. Could you please say the number of tickets again for confirmation?";
             repromptText = "Could you please say the number of tickets again for confirmation?";
@@ -375,11 +475,11 @@ function handleTwoTicketResponse(intent, session, callback){
                 "repromptText" : repromptText
             };
             amountoftickets = 2;
-            counter = 3;
+            counter = 4;
         }
     }
 
-    else if(counter === 3){
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -394,7 +494,7 @@ function handleTwoTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -414,7 +514,7 @@ function handleTwoTicketResponse(intent, session, callback){
 function handleThreeTicketResponse(intent, session, callback){
 
 
-    if(counter === 2){
+    if(counter === 3){
         if(amountoftickets === 0){
             speechOutput = "Okay! So you would like to buy three tickets. Could you please say the number of tickets again for confirmation?";
             repromptText = "Could you please say the number of tickets again for confirmation?";
@@ -437,11 +537,11 @@ function handleThreeTicketResponse(intent, session, callback){
                 "repromptText" : repromptText
             };
             amountoftickets = 2;
-            counter = 3;
+            counter = 4;
         }
     }
 
-    else if(counter === 3){
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -456,7 +556,7 @@ function handleThreeTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -476,7 +576,7 @@ function handleThreeTicketResponse(intent, session, callback){
 
 function handleFourTicketResponse(intent, session, callback){
 
-    if(counter === 2){
+    if(counter === 3){
         if(amountoftickets === 0){
             speechOutput = "Okay! So you would like to buy four tickets. Could you please say the number of tickets again for confirmation?";
             repromptText = "Could you please say the number of tickets again for confirmation?";
@@ -499,11 +599,11 @@ function handleFourTicketResponse(intent, session, callback){
                 "repromptText" : repromptText
             };
             amountoftickets = 2;
-            counter = 3;
+            counter = 4;
         }
     }
 
-    else if(counter === 3){
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -518,7 +618,7 @@ function handleFourTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is :" + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -539,7 +639,7 @@ function handleFourTicketResponse(intent, session, callback){
 function handleFiveTicketResponse(intent, session, callback){
 
 
-    if(counter === 2){
+    if(counter === 3){
         if(amountoftickets === 0){
             speechOutput = "Okay! So you would like to buy five tickets. Could you please say the number of tickets again for confirmation?";
             repromptText = "Could you please say the number of tickets again for confirmation?";
@@ -562,11 +662,11 @@ function handleFiveTicketResponse(intent, session, callback){
                 "repromptText" : repromptText
             };
             amountoftickets = 2;
-            counter = 3;
+            counter = 4;
         }
     }
 
-    else if(counter === 3){
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -581,7 +681,7 @@ function handleFiveTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -602,7 +702,7 @@ function handleFiveTicketResponse(intent, session, callback){
 function handleSixTicketResponse(intent, session, callback){
 
 
-    if(counter === 2){
+    if(counter === 3){
         if(amountoftickets === 0){
             speechOutput = "Okay! So you would like to buy six tickets. Could you please say the number of tickets again for confirmation?";
             repromptText = "Could you please say the number of tickets again for confirmation?";
@@ -625,11 +725,11 @@ function handleSixTicketResponse(intent, session, callback){
                 "repromptText" : repromptText
             };
             amountoftickets = 2;
-            counter = 3;
+            counter = 4;
         }
     }
 
-    else if(counter === 3){
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -644,7 +744,7 @@ function handleSixTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -664,7 +764,7 @@ function handleSixTicketResponse(intent, session, callback){
 
 function handleSevenTicketResponse(intent, session, callback){
 
-    if(counter === 2){
+    if(counter === 3){
         if(amountoftickets === 0){
             speechOutput = "Okay! So you would like to buy seven tickets. Could you please say the number of tickets again for confirmation?";
             repromptText = "Could you please say the number of tickets again for confirmation?";
@@ -687,11 +787,11 @@ function handleSevenTicketResponse(intent, session, callback){
                 "repromptText" : repromptText
             };
             amountoftickets = 2;
-            counter = 3;
+            counter = 4;
         }
     }
 
-    else if(counter === 3){
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -706,7 +806,7 @@ function handleSevenTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -726,7 +826,7 @@ function handleSevenTicketResponse(intent, session, callback){
 
 function handleEightTicketResponse(intent, session, callback){
 
-    if(counter === 2){
+    if(counter === 3){
         if(amountoftickets === 0){
             speechOutput = "Okay! So you would like to buy eight tickets. Could you please say the number of tickets again for confirmation?";
             repromptText = "Could you please say the number of tickets again for confirmation?";
@@ -749,11 +849,11 @@ function handleEightTicketResponse(intent, session, callback){
                 "repromptText" : repromptText
             };
             amountoftickets = 2;
-            counter = 3;
+            counter = 4;
         }
     }
 
-    else if(counter === 3){
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -768,7 +868,7 @@ function handleEightTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
@@ -787,7 +887,7 @@ function handleEightTicketResponse(intent, session, callback){
 
 function handleNineTicketResponse(intent, session, callback){
 
-    if(counter === 2){
+    if(counter === 3){
         if(amountoftickets === 0){
             speechOutput = "Okay! So you would like to buy nine tickets. Could you please say the number of tickets again for confirmation?";
             repromptText = "Could you please say the number of tickets again for confirmation?";
@@ -810,11 +910,11 @@ function handleNineTicketResponse(intent, session, callback){
                 "repromptText" : repromptText
             };
             amountoftickets = 2;
-            counter = 3;
+            counter = 4;
         }
     }
 
-    else if(counter === 3){
+    else if(counter === 4){
         if(phonenumber.length != 9){
             speechOutput = "Give me the next diget of your phone number.";
             repromptText = "enter your phone number!";
@@ -829,7 +929,7 @@ function handleNineTicketResponse(intent, session, callback){
         }
 
         else if(phonenumber.length === 9){
-            speechOutput = "Thank you for entering your phone number! Your phone number is: " + phonenumber;
+            speechOutput = "Thank you for entering your phone number! Your phone number is:" + phonenumber;
             repromptText = "enter your phone number!";
             header = "Phone number";
             shouldEndSession = false;
