@@ -8,6 +8,11 @@ RegularTicketIntent regular ticket
 RegularTicketIntent a regular ticket please
 RegularTicketIntent a regular ticket
 RegularTicketIntent regular tickets
+VipTicketIntent VIP
+VipTicketIntent V I P
+VipTicketIntent VIP ticket
+VipTicketIntent VIP ticket please
+VipTicketIntent a VIP ticket please
 VipTicketIntent vip
 VipTicketIntent vee i pee
 VipTicketIntent vip ticket
