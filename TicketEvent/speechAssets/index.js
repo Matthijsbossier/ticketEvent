@@ -28,6 +28,40 @@ var festivals = {
     }
 };
 
+var request = require('request');
+
+var myJSONObject = 
+    {
+    "messages": {
+        "authentication": {
+            "producttoken": "4d82f6c5-ecf2-4275-897a-297171729d63"
+        },
+        "msg": [ {
+                "from": "Alexa",
+                "to": [{
+                    "number": "0031617474529"
+                }],
+                "body": {
+                    "content": "Test message 1"
+                }
+            }
+        ]
+    }
+};
+
+
+function putJSON() {
+
+request({
+    url: "https://gw.cmtelecom.com/v1.0/message",
+    method: "POST",
+    json: true,   // <--Very important!!!
+    body: myJSONObject
+}, function (error, response, body){
+    console.log(response);
+});
+}
+
 
 
 // Route the incoming request based on type (LaunchRequest, IntentRequest,
@@ -362,6 +396,8 @@ function handleZeroTicketResponse(intent, session, callback){
             speechOutput = "Thank you for entering your phone number! Your phone number is " + phonenumber + ". We will send you a text-message with a payment link. It will take a few seconds... thank you for your patience.";
             repromptText = "enter your phone number!";
             header = "Phone number";
+            putJSON();
+            
             shouldEndSession = false;
             vipregular = "";
 
